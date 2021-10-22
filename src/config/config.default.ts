@@ -21,18 +21,22 @@ export default (appInfo: EggAppInfo) => {
   // config.security = {
   //   csrf: false,
   // };
+
   // 数据库配置
   config.orm = {
     type: 'mysql',
     host: process.env.MYSQL_HOST || '127.0.0.1',
     port: process.env.MYSQL_PORT || 3306,
     username: process.env.MYSQL_USER || 'root',
-    password: process.env.MYSQL_PASSWORD || 'Vast',
+    password: process.env.MYSQL_PASSWORD || '12.',
     database: process.env.MYSQL_DATABASE || 'midway_server',
     synchronize: false,
     logging: true,
     timezone: '+08:00',
   } as ConnectionOptions;
-
+  // 文件上传
+  config.multipart = {
+    mode: 'file',
+  };
   return config;
 };

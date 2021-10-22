@@ -14,7 +14,7 @@ export const orm: ConnectionOptions = {
   host: '49.235.67.92',
   port: 3306,
   username: 'root',
-  password: 'Vast.',
+  password: '121.',
   database: 'midway_server',
   synchronize: false,
   logging: true,
@@ -28,5 +28,5 @@ export const jwt = {
     secret: '123456abc',
   },
   // https://github.com/eggjs/egg-path-matching
-  ignore: ['/signup', '/auth/login', '/login', /\/swagger-u.*/u],
+  ignore: [/^\/api\/auth/, /\/swagger-u.*/u],
 };

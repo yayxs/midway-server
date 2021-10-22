@@ -12,7 +12,7 @@ import { Context } from '../../interface';
 import { AuthService } from '../service/auth';
 import { LoginDTO } from '../dto/auth';
 @Provide()
-@Controller('/auth', {
+@Controller('/api/auth', {
   tagName: '管理员登录授权',
   description: '包含管理员授权登录、获取信息等接口 ',
 })
