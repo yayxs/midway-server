@@ -27,7 +27,7 @@ export default (appInfo: EggAppInfo) => {
     host: process.env.MYSQL_HOST || '127.0.0.1',
     port: process.env.MYSQL_PORT || 3306,
     username: process.env.MYSQL_USER || 'root',
-    password: process.env.MYSQL_PASSWORD || '',
+    password: process.env.MYSQL_PASSWORD || 'Vast',
     database: process.env.MYSQL_DATABASE || 'midway_server',
     synchronize: false,
     logging: true,

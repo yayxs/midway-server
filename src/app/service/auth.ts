@@ -1,5 +1,5 @@
 import { Plugin, Inject, Provide } from '@midwayjs/decorator';
-import { Jwt } from '@waiting/egg-jwt';
+// import * as Jwt from 'egg-jwt';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
 import { Context } from '../../interface';
@@ -7,11 +7,12 @@ import { AdminUserModel } from '../model/admin-user';
 import * as assert from 'assert';
 @Provide()
 export class AuthService {
-  constructor(@Plugin() private readonly jwt: Jwt) {}
+  constructor() {}
 
   @Inject()
   private ctx: Context;
-
+  @Plugin()
+  jwt;
   @InjectEntityModel(AdminUserModel)
   private adminUserModel: Repository<AdminUserModel>;
   async localHandler(params: {

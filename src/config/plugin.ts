@@ -5,6 +5,6 @@ export default {
   static: false, // default is true
   jwt: {
     enable: true,
-    package: '@waiting/egg-jwt',
+    package: 'egg-jwt',
   },
 } as EggPlugin;
