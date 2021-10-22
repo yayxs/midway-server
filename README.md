@@ -1,30 +1,24 @@
-# my-midway-project
-
-## QuickStart
-
-<!-- add docs here for user -->
-
-see [midway docs][midway] for more detail.
-
-### Development
+## dev
 
 ```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/
+cross-env ets && cross-env NODE_ENV=local midway-bin dev --ts --debug # ● 使用 --ts 指定 TypeScript（ts-node）环境启动
 ```
+## currentFramework
 
-### Deploy
+```typescript
+const currentFramework = [
+  '@midwayjs/web',
+  '@midwayjs/koa',
+  '@midwayjs/express',
+  '@midwayjs/serverless-app',
+  '@midwayjs/grpc',
+  '@midwayjs/rabbitmq',
+  '@midwayjs/socketio',
+  '@midwayjs/faas',
+];
+```
+## build
 
 ```bash
-$ npm start
-$ npm stop
+NODE_ENV=production pm2 start ./bootstrap.js --name midway_app -i 4
 ```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-
-
-[midway]: https://midwayjs.org

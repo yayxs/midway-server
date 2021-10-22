@@ -45,5 +45,11 @@ export class AuthController {
     const token = await this.service.createAdminUserToken(adminUser);
 
     console.log('token', token);
+    ctx.helper.success({
+      token,
+      currentAuthority: 'admin',
+      status: 'ok',
+      type: 'account',
+    });
   }
 }

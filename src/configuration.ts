@@ -4,6 +4,7 @@ import { Application } from 'egg';
 import { join } from 'path';
 import * as swagger from '@midwayjs/swagger';
 import * as orm from '@midwayjs/orm';
+
 @Configuration({
   imports: [swagger, orm],
   importConfigs: [join(__dirname, './config')],

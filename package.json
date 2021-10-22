@@ -10,10 +10,11 @@
     "@midwayjs/orm": "^2.13.4",
     "@midwayjs/swagger": "^1.3.0",
     "@midwayjs/web": "^2.3.0",
-    "@mw-components/jwt": "^9.2.0",
+    "@waiting/egg-jwt": "^6.2.0",
     "egg": "^2.0.0",
     "egg-scripts": "^2.10.0",
     "mysql2": "^2.3.2",
+    "swagger-ui-dist": "^3.52.5",
     "typeorm": "^0.2.38"
   },
   "devDependencies": {
@@ -26,7 +27,6 @@
     "cross-env": "^6.0.0",
     "jest": "^26.4.0",
     "mwts": "^1.0.5",
-    "swagger-ui-dist": "^3.52.5",
     "ts-jest": "^26.2.0",
     "typescript": "^4.0.0"
   },
@@ -37,7 +37,7 @@
     "start": "egg-scripts start --daemon --title=my-midway-project --framework=@midwayjs/web",
     "stop": "egg-scripts stop --title=my-midway-project",
     "start_build": "npm run build && cross-env NODE_ENV=development midway-bin dev",
-    "dev": "cross-env ets && cross-env NODE_ENV=local midway-bin dev --ts",
+    "dev": "cross-env ets && cross-env NODE_ENV=local midway-bin dev --ts --debug",
     "test": "midway-bin test --ts",
     "cov": "midway-bin cov --ts",
     "lint": "mwts check",

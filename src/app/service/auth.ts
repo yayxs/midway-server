@@ -1,21 +1,16 @@
-import { Config, Inject, Provide } from '@midwayjs/decorator';
+import { Plugin, Inject, Provide } from '@midwayjs/decorator';
+import { Jwt } from '@waiting/egg-jwt';
 import { InjectEntityModel } from '@midwayjs/orm';
-import { JwtComponent } from '@mw-components/jwt';
 import { Repository } from 'typeorm';
-import { JwtAuthMiddlewareConfig } from '../../config/config.types';
 import { Context } from '../../interface';
 import { AdminUserModel } from '../model/admin-user';
-
+import * as assert from 'assert';
 @Provide()
 export class AuthService {
+  constructor(@Plugin() private readonly jwt: Jwt) {}
+
   @Inject()
   private ctx: Context;
-
-  @Inject('jwt:jwtComponent')
-  jwt: JwtComponent;
-
-  @Config('jwtAuth')
-  private jwtAuthConfig: JwtAuthMiddlewareConfig;
 
   @InjectEntityModel(AdminUserModel)
   private adminUserModel: Repository<AdminUserModel>;
@@ -51,16 +46,19 @@ export class AuthService {
     });
     return user;
   }
+  /**
+   * 生成token 保存redis中
+   * @param data
+   * @returns {String} token字符串
+   */
   async createAdminUserToken(data: AdminUserModel): Promise<string> {
-    try {
-      const token: string = this.jwt.sign({ id: data.id }, '', {
-        expiresIn: this.jwtAuthConfig.accessTokenExpiresIn,
-      });
-      // 存redis
-      // 返回token
-      return token;
-    } catch (e) {
-      console.log(123);
-    }
+    console.log('当前的用户', data);
+    const payload = { iat: data.id };
+    const token: string = await this.jwt.sign(payload);
+    const valid = this.jwt.verify(token);
+    assert.deepStrictEqual(valid, payload);
+
+    return token;
+    // ctx.body = `\nToken: ${token}`;
   }
 }
